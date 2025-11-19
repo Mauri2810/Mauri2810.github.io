@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device‑width, initial-scale=1.0">
+  <title>Marxa Senderista Reus 2025</title>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Marxa Reus</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">Inici</a></li>
+          <li class="nav-item"><a class="nav-link" href="#form">Formulari</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacte">Contacte</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mapes">Mapes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Menú</a></li>
+          <li class="nav-item"><a class="nav-link" href="#fotos">Fotos</a></li>
+        </ul>
+        <a class="btn btn-outline-light ms-lg-3" href="#form">Inscriu‑te</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="pt‑5 mt‑5 p-5 text-center bg-light">
+    <div class="container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Reus_centre_historic.jpg" class="img-fluid mb‑4" alt="Reus centre">
+      <h1 class="display-4">Marxa Senderista de Reus 2025</h1>
+      <p class="lead">Camina per l’entorn natural de Reus i gaudeix d’un dia inoblidable!</p>
+      <a class="btn btn-primary btn-lg" href="#form">Inscripció</a>
+    </div>
+  </section>
+
+  <!-- Formulari d'inscripció -->
+  <section id="form" class="p-5">
+    <div class="container">
+      <h2 class="mb‑4">Formulari d’inscripció</h2>
+      <form>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" required>
+          </div>
+          <div class="col-md-6">
+            <label for="cognoms" class="form-label">Cognoms</label>
+            <input type="text" class="form-control" id="cognoms" required>
+          </div>
+        </div>
+        <div class="row g-3 mt‑2">
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="col-md-6">
+            <label for="telefon" class="form-label">Telèfon</label>
+            <input type="tel" class="form-control" id="telefon" required>
+          </div>
+        </div>
+        <div class="mt‑3">
+          <label for="ruta" class="form-label">Selecció de ruta</label>
+          <select class="form-select" id="ruta" required>
+            <option value="">Selecciona...</option>
+            <option value="llarga">Ruta Llarga</option>
+            <option value="curta">Ruta Curta</option>
+          </select>
+        </div>
+        <div class="form-check mt‑3">
+          <input class="form-check-input" type="checkbox" id="condicions" required>
+          <label class="form-check-label" for="condicions">
+            Accepto les condicions
+          </label>
+        </div>
+        <div class="mt‑3">
+          <label class="form-label">Dinareu després de la marxa?</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="dinar" value="si" required>
+            <label class="form-check-label">Sí</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="dinar" value="no">
+            <label class="form-check-label">No</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success mt‑4">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contacte -->
+  <section id="contacte" class="p-5 bg-light">
+    <div class="container">
+      <h2 class="mb‑4">Contacte</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card p‑4 mb‑3">
+            <h5>Informació de contacte</h5>
+            <p>Email: info@marxareus.cat</p>
+            <p>Tel: 977 000 000</p>
+            <p>Adreça: Reus (Tarragona)</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="missatgeNom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="missatgeNom" required>
+              </div>
+              <div class="col-md-6">
+                <label for="missatgeEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="missatgeEmail" required>
+              </div>
+            </div>
+            <div class="mt‑3">
+              <label for="missatgeText" class="form-label">Missatge</label>
+              <textarea class="form-control" id="missatgeText" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt‑3">Envia Missatge</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapes -->
+  <section id="mapes" class="p‑5">
+    <div class="container">
+      <h2 class="mb‑4">Mapes de les rutes</h2>
+      <ul class="nav nav-tabs" id="mapesTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="llarga-tab" data-bs-toggle="tab" data-bs-target="#llarga" type="button" role="tab" aria-controls="llarga" aria-selected="true">Ruta Llarga</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="curta-tab" data-bs-toggle="tab" data-bs-target="#curta" type="button" role="tab" aria-controls="curta" aria-selected="false">Ruta Curta</button>
+        </li>
+      </ul>
+      <div class="tab-content mt‑3">
+        <div class="tab-pane fade show active" id="llarga" role="tabpanel" aria-labelledby="llarga-tab">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d11943.123!2d1.106!3d41.151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x0%3A0x0!2sReus!3m2!1d41.154!2d1.107!4m5!1s0x0%3A0x0!2sPrades%2C%20Tarragona!3m2!1d41.167!2d1.01!5e0!3m2!1sca!2ses!4v1699175412345"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="tab-pane fade" id="curta" role="tabpanel" aria-labelledby="curta-tab">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d11943.123!2d1.106!3d41.151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x0%3A0x0!2sReus!3m2!1d41.154!2d1.107!4m5!1s0x0%3A0x0!2sVinyols%2C%20Tarragona!3m2!1d41.140!2d1.120!5e0!3m2!1sca!2ses!4v1699175412345"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menú -->
+  <section id="menu" class="p‑5 bg-light">
+    <div class="container">
+      <h2 class="mb‑4">Menú del Dinar</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col">
+          <div class="card h‑100">
+            <img src="https://originalpaella.es/stupload/stblog/1/130/825/130825large.jpg" class="card-img-top" alt="Paella">
+            <div class="card-body">
+              <h5 class="card-title">Paella</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h‑100">
+            <img src="https://www.femturisme.cat/_fotos/landings/main/anem-de-tapes-per-catalunya.jpg" class="card-img-top" alt="Tapes">
+            <div class="card-body">
+              <h5 class="card-title">Tapes Catalanes</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h‑100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Botifarra_i_mongetes.jpg" class="card-img-top" alt="Botifarra i mongetes">
+            <div class="card-body">
+              <h5 class="card-title">Botifarra i Mongetes</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h‑100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Crema_catalana.jpg" class="card-img-top" alt="Crema Catalana">
+            <div class="card-body">
+              <h5 class="card-title">Crema Catalana</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fotos -->
+  <section id="fotos" class="p‑5">
+    <div class="container">
+      <h2 class="mb‑4">Fotos del poble i senderisme</h2>
+      <div id="carouselFotos" class="carousel slide" data‑bs‑ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselFotos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselFotos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselFotos" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://images.alltrails.com/eyJidWNrZXQi...q=90" class="d-block w‑100" alt="Vista senderisme Reus">
+          </div>
+          <div class="carousel-item">
+            <img src="https://imagenes.diaridetarragona.com/files/og_thumbnail/uploads/2025/06/04/684067283bdd0.jpeg" class="d-block w‑100" alt="Entorn natural Reus">
+          </div>
+          <div class="carousel-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Reus_centre_historic.jpg" class="d-block w‑100" alt="Centre de Reus">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselFotos" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually‑hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselFotos" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually‑hidden">Següent</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center p‑4">
+    <div class="container">
+      <p class="mb‑1">&copy; 2025 Marxa Senderista Reus. Tots els drets reservats.</p>
+      <p class="mb‑1">Adreça: Carrer Fictici 123, Reus (Tarragona)</p>
+      <div class="mt‑2">
+        <a href="#" class="text-white me‑3"><i class="bi bi-facebook"></i> Facebook</a>
+        <a href="#" class="text-white me‑3"><i class="bi bi-instagram"></i> Instagram</a>
+        <a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
