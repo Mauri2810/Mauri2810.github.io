@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Somni Game Studios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #00d4ff; --bg: #050608; }
+        
+        body { 
+            background: linear-gradient(135deg, #050608 0%, #0a0c15 50%, #050608 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; 
+        }
+        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+        .navbar { backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 25px 0; z-index: 1000; }
+        .nav-link.active { color: var(--accent) !important; font-weight: bold; }
+
+        .contact-section { padding-top: 180px; padding-bottom: 100px; }
+        
+        .glass-form {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+        }
+
+        .btn-send {
+            background: var(--accent);
+            color: black;
+            font-weight: 800;
+            width: 100%;
+            padding: 18px;
+            border-radius: 15px;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .btn-send:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--accent);
+        }
+
+        .contact-info-item {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">Somni <span class="text-info">Studios</span></a>
+            <div class="navbar-nav ms-auto gap-4 align-items-center">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link">Proyectos</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="juego.html" class="nav-link px-3" style="color: var(--accent); background: rgba(0,212,255,0.1); border-radius: 10px;">● PLAY</a>
+                <a href="contacto.html" class="nav-link active border border-info rounded-pill px-3">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container contact-section">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <h1 class="display-3 fw-bold mb-4">¿Hablamos del <span class="text-info">futuro?</span></h1>
+                <p class="fs-5 text-white-50 mb-5">Estamos buscando nuevos retos y colaboraciones. Si tienes una idea o quieres saber más sobre Somni, escríbenos.</p>
+                
+                <div class="contact-info-item">
+                    <h5 class="text-info">Localización</h5>
+                    <p class="mb-0">Madrid, España | Remoto Global</p>
+                </div>
+                <div class="contact-info-item">
+                    <h5 class="text-info">Email General</h5>
+                    <p class="mb-0">hello@somnistudios.com</p>
+                </div>
+            </div>
+
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="glass-form">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Tu Nombre">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Tu Email">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Asunto">
+                        <textarea class="form-control" rows="5" placeholder="Cuéntanos en qué estás pensando..."></textarea>
+                        <button type="button" class="btn-send">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>

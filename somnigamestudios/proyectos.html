@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | Somni Game Studios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #00d4ff; --bg: #050608; --stepland: #90be6d; }
+        
+        body { 
+            background: linear-gradient(135deg, #050608 0%, #0a0c15 50%, #050608 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; 
+        }
+        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+        .navbar { backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 25px 0; z-index: 1000; }
+        .nav-link.active { color: var(--accent) !important; font-weight: bold; }
+        
+        .project-header { padding: 180px 0 60px; }
+        .info-card { 
+            background: rgba(255,255,255,0.03); border-radius: 25px; padding: 40px; 
+            border: 1px solid rgba(255,255,255,0.05); height: 100%; transition: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+        .info-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(0, 212, 255, 0.05); }
+
+        .btn-glow { 
+            background: var(--stepland); color: black; font-weight: 800; padding: 18px 45px; 
+            border-radius: 100px; text-decoration: none; display: inline-block;
+            position: relative; overflow: hidden; transition: 0.3s; border: none;
+        }
+        .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--stepland); color: black; }
+        
+        .carousel { border-radius: 30px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">Somni <span class="text-info">Studios</span></a>
+            <div class="navbar-nav ms-auto gap-4 align-items-center">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link active">Proyectos</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="juego.html" class="nav-link px-3" style="color: var(--accent); background: rgba(0,212,255,0.1); border-radius: 10px;">● PLAY</a>
+                <a href="contacto.html" class="nav-link border border-info rounded-pill px-3">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container project-header">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <img src="logo.png" alt="Stepland" style="max-width: 200px;" class="mb-4">
+                <h1 class="display-2 fw-bold mb-3">STEPLAND</h1>
+                <p class="fs-4 text-white-50 mb-5">Donde cada paso cuenta. Convierte tu movimiento diario en recompensas reales y digitales en el primer ecosistema de salud gamificado.</p>
+                <a href="https://stepland.es/" target="_blank" class="btn-glow">VISITAR STEPLAND.ES</a>
+            </div>
+            <div class="col-lg-6" data-aos="zoom-in">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070" class="d-block w-100" alt="Tecnología">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2070" class="d-block w-100" alt="Gaming">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-5">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-card">
+                    <h3 class="text-info mb-3">Misión</h3>
+                    <p class="opacity-75">Fusionar el bienestar físico con el entretenimiento interactivo para combatir el sedentarismo global.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="info-card">
+                    <h3 class="text-info mb-3">Tecnología</h3>
+                    <p class="opacity-75">Integración con wearables y dispositivos móviles para trackear tu progreso con precisión quirúrgica.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="info-card">
+                    <h3 class="text-info mb-3">Premios</h3>
+                    <p class="opacity-75">Canjea tus pasos por descuentos en marcas colaboradoras, merchandising exclusivo y mejoras in-game.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>

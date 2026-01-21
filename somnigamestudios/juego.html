@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play | Somni Game Studios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #00d4ff; --bg: #050608; }
+        body { 
+            background: linear-gradient(135deg, #050608 0%, #0a0c15 50%, #050608 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white; font-family: 'Outfit', sans-serif; overflow: hidden; 
+        }
+        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+        .navbar { backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 25px 0; z-index: 1000; }
+        .nav-link.active { color: var(--accent) !important; }
+
+        #game-wrapper { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; }
+        canvas { background: rgba(0, 0, 0, 0.6); border: 2px solid var(--accent); border-radius: 20px; box-shadow: 0 0 50px rgba(0, 212, 255, 0.2); max-width: 100%; }
+
+        #game-over-screen {
+            position: absolute; inset: 0; background: rgba(5, 6, 8, 0.95);
+            backdrop-filter: blur(15px); display: none; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 10; border-radius: 18px;
+        }
+        .go-title { font-size: 5rem; font-weight: 900; color: white; margin-bottom: 10px; }
+        .go-score { font-size: 1.5rem; color: var(--accent); margin-bottom: 30px; letter-spacing: 2px; }
+        .btn-retry { background: var(--accent); color: black; font-weight: 800; padding: 15px 40px; border-radius: 100px; border: none; transition: 0.3s; text-transform: uppercase; }
+        .btn-retry:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--accent); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">Somni <span class="text-info">Studios</span></a>
+            <div class="navbar-nav ms-auto gap-4 align-items-center">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="proyectos.html" class="nav-link">Proyectos</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="juego.html" class="nav-link active px-3" style="color: var(--accent); background: rgba(0,212,255,0.1); border-radius: 10px;">● PLAY</a>
+                <a href="contacto.html" class="nav-link border border-info rounded-pill px-3">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="game-wrapper">
+        <div style="position: relative;">
+            <canvas id="gameCanvas" width="800" height="500"></canvas>
+            <div id="game-over-screen">
+                <h2 class="go-title">GAME OVER</h2>
+                <p id="final-score" class="go-score">PUNTUACIÓN: 0</p>
+                <button class="btn-retry" onclick="reiniciarJuego()">VOLVER A INTENTAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const screenGO = document.getElementById("game-over-screen");
+        const finalScoreText = document.getElementById("final-score");
+
+        const sprite = new Image();
+        sprite.src = 'personaje.png';
+
+        let score, gameActive, birdY, birdVelocity, pipes;
+        const gravity = 0.42; // Gravedad un poco más suave
+        const jump = -7.2;    // Salto un poco más controlado
+        const birdSize = 42;
+
+        function inicializarVariables() {
+            score = 0; birdY = canvas.height / 2; birdVelocity = 0;
+            pipes = []; gameActive = true; screenGO.style.display = "none";
+        }
+
+        window.addEventListener("keydown", (e) => { if (e.code === "Space" && gameActive) birdVelocity = jump; });
+        canvas.addEventListener("mousedown", () => { if (gameActive) birdVelocity = jump; });
+
+        function createPipe() {
+            // HUECO MÁS GRANDE (Gap aumentado de 170 a 210)
+            const gap = 210; 
+            const height = Math.floor(Math.random() * (canvas.height - gap - 120)) + 60;
+            pipes.push({ x: canvas.width, top: height, bottom: canvas.height - height - gap, passed: false });
+        }
+
+        function dibujarArbolRealista(x, altura, esInvertido) {
+            const anchoTronco = 24;
+            ctx.save();
+            let gradTronco = ctx.createLinearGradient(x, 0, x + anchoTronco, 0);
+            gradTronco.addColorStop(0, "#2b1d0e");
+            gradTronco.addColorStop(0.5, "#4e342e");
+            gradTronco.addColorStop(1, "#2b1d0e");
+            ctx.fillStyle = gradTronco;
+
+            if (esInvertido) {
+                ctx.fillRect(x, 0, anchoTronco, altura);
+                dibujarCopa(x + anchoTronco/2, altura, true);
+            } else {
+                ctx.fillRect(x, canvas.height - altura, anchoTronco, altura);
+                dibujarCopa(x + anchoTronco/2, canvas.height - altura, false);
+            }
+            ctx.restore();
+        }
+
+        function dibujarCopa(x, y, esInvertido) {
+            const capas = [
+                { r: 52, c: "#1b5e20" }, 
+                { r: 42, c: "#2e7d32" }, 
+                { r: 28, c: "#4caf50" }  
+            ];
+            capas.forEach((capa, i) => {
+                ctx.beginPath();
+                ctx.fillStyle = capa.c;
+                let offsetY = esInvertido ? (i * 4) : -(i * 4);
+                ctx.arc(x, y + offsetY, capa.r, 0, Math.PI * 2);
+                ctx.fill();
+                if(i === 2) {
+                    ctx.strokeStyle = "rgba(0, 212, 255, 0.3)";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+            });
+        }
+
+        function perder() {
+            gameActive = false;
+            finalScoreText.innerText = "PUNTUACIÓN: " + score;
+            screenGO.style.display = "flex";
+        }
+
+        function reiniciarJuego() { inicializarVariables(); gameLoop(); }
+
+        function gameLoop() {
+            if (!gameActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            birdVelocity += gravity;
+            birdY += birdVelocity;
+
+            ctx.save();
+            ctx.translate(100, birdY);
+            ctx.rotate(birdVelocity * 0.05);
+            ctx.drawImage(sprite, -birdSize/2, -birdSize/2, birdSize, birdSize);
+            ctx.restore();
+
+            // ÁRBOLES MÁS SEPARADOS (Aumentado de 320 a 380 de distancia)
+            if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 380) createPipe();
+
+            pipes.forEach((pipe, index) => {
+                pipe.x -= 3.0; // Velocidad un pelín más lenta
+                dibujarArbolRealista(pipe.x, pipe.top, true);
+                dibujarArbolRealista(pipe.x, pipe.bottom, false);
+
+                if (!pipe.passed && pipe.x < 100) { score++; pipe.passed = true; }
+
+                let birdR = birdSize/2 - 8; // Hitbox más amable
+                if (100 + birdR > pipe.x && 100 - birdR < pipe.x + 24) {
+                    if (birdY - birdR < pipe.top || birdY + birdR > canvas.height - pipe.bottom) perder();
+                }
+                
+                let distTop = Math.hypot(100 - (pipe.x + 12), birdY - pipe.top);
+                let distBot = Math.hypot(100 - (pipe.x + 12), birdY - (canvas.height - pipe.bottom));
+                if (distTop < birdR + 42 || distBot < birdR + 42) perder();
+
+                if (pipe.x < -120) pipes.splice(index, 1);
+            });
+
+            if (birdY > canvas.height || birdY < 0) perder();
+
+            ctx.fillStyle = "white";
+            ctx.font = "900 35px Outfit";
+            ctx.textAlign = "center";
+            ctx.fillText(score, canvas.width/2, 70);
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        sprite.onload = () => { inicializarVariables(); gameLoop(); };
+    </script>
+</body>
+</html>
