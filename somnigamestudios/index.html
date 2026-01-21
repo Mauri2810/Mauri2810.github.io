@@ -200,64 +200,65 @@
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ once: true });
-
-    // LÓGICA AL CARGAR LA PÁGINA
-    window.onload = function() {
-        // 1. Manejo del Splash Screen
-        const referrer = document.referrer;
-        const splash = document.getElementById('splash-screen');
-        if (!referrer.includes(window.location.hostname)) {
-            if(splash) splash.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        } else {
-            if(splash) splash.style.display = 'none';
+    <script>
+        AOS.init({ once: true });
+    
+        window.onload = function() {
+            // 1. Manejo del Splash Screen
+            const referrer = document.referrer;
+            const splash = document.getElementById('splash-screen');
+            if (!referrer.includes(window.location.hostname)) {
+                if(splash) splash.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                if(splash) splash.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+    
+            // 2. LÓGICA DE PRIVACIDAD POR SESIÓN
+            // Comprobamos si el usuario YA aceptó en esta sesión actual
+            if (!sessionStorage.getItem("somni_sesion_aceptada")) {
+                console.log("Nueva sesión detectada. El banner aparecerá.");
+                setTimeout(() => {
+                    const banner = document.getElementById("privacy-banner");
+                    if(banner) banner.classList.add("show");
+                }, 2000); 
+            } else {
+                console.log("Ya aceptaste en esta sesión, no se volverá a mostrar hasta que reinicies.");
+            }
+        };
+    
+        function quitarSplash() {
+            document.getElementById('splash-screen').classList.add('splash-hidden');
             document.body.style.overflow = 'auto';
         }
-
-        // 2. BANNER DE PRIVACIDAD: Ahora sale SIEMPRE al reiniciar
-        console.log("Reiniciando banner de privacidad...");
-        
-        // Opcional: Esto borra cualquier rastro previo cada vez que carga
-        localStorage.removeItem("somni_consent"); 
-
-        setTimeout(() => {
-            const banner = document.getElementById("privacy-banner");
-            if(banner) {
-                banner.classList.add("show");
-                console.log("Banner mostrado correctamente.");
+    
+        // FUNCION DE ACEPTAR/RECHAZAR
+        function gestionarPrivacidad(estado) {
+            if (estado === 'aceptado') {
+                // Guardamos la decisión SOLO para esta sesión
+                sessionStorage.setItem("somni_sesion_aceptada", "true");
+                console.log("Aceptado para esta sesión.");
             }
-        }, 2000); // Aparece a los 2 segundos
-    };
-
-    function quitarSplash() {
-        document.getElementById('splash-screen').classList.add('splash-hidden');
-        document.body.style.overflow = 'auto';
-    }
-
-    // FUNCIONES DE PRIVACIDAD
-    function gestionarPrivacidad(estado) {
-        // Aunque no bloquee el banner al reiniciar, 
-        // guardamos el log por si quieres saber qué eligió el usuario
-        console.log("El usuario eligió: " + estado);
-        document.getElementById("privacy-banner").classList.remove("show");
-    }
-
-    function abrirModal() {
-        document.getElementById("modal-privacidad").style.display = "flex";
-        document.body.style.overflow = 'hidden';
-    }
-
-    function cerrarModal() {
-        document.getElementById("modal-privacidad").style.display = "none";
-        document.body.style.overflow = 'auto';
-    }
-
-    window.onclick = function(event) {
-        let modal = document.getElementById("modal-privacidad");
-        if (event.target == modal) cerrarModal();
-    }
-</script>
+            
+            // Ocultamos el banner
+            document.getElementById("privacy-banner").classList.remove("show");
+        }
+    
+        function abrirModal() {
+            document.getElementById("modal-privacidad").style.display = "flex";
+            document.body.style.overflow = 'hidden';
+        }
+    
+        function cerrarModal() {
+            document.getElementById("modal-privacidad").style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+    
+        window.onclick = function(event) {
+            let modal = document.getElementById("modal-privacidad");
+            if (event.target == modal) cerrarModal();
+        }
+    </script>
 </body>
 </html>
