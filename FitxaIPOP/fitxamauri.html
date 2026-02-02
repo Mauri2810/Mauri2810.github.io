@@ -3,176 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maurici Nisa Ortiz | Perfil Professional</title>
+    <title>Maurici Nisa Ortiz | Portfolio Professional</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0052FF;
-            --secondary: #6B7280;
-            --bg-light: #FFFFFF;
-            --card-border: #F1F3F5;
+            --primary: #1a73e8;
+            --dark: #0f172a;
+            --text-body: #334155;
+            --bg-light: #ffffff;
+            --card-border: #f1f5f9;
         }
 
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-light); 
-            color: #111827;
-            -webkit-font-smoothing: antialiased;
+            color: var(--text-body);
+            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, .section-label { 
+            font-family: 'Outfit', sans-serif; 
+            color: var(--dark);
         }
 
         /* Hero Section */
         .hero {
-            padding: 80px 0;
-            border-bottom: 1px solid var(--card-border);
+            padding: 100px 0 80px;
+            background: radial-gradient(circle at 10% 20%, rgba(26, 115, 232, 0.03) 0%, rgba(255, 255, 255, 1) 90%);
         }
 
         .profile-img {
-            width: 140px; height: 140px;
+            width: 150px; height: 150px;
             object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 30px;
+            padding: 5px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
         }
 
-        .role-tag {
-            background: #EBF2FF;
+        .role-badge {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             color: var(--primary);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.85rem;
+            background: rgba(26, 115, 232, 0.08);
+            padding: 8px 20px;
+            border-radius: 100px;
             display: inline-block;
         }
 
-        /* Bento Grid Style */
+        h1 { font-weight: 800; font-size: 3.5rem; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+
+        /* Content Blocks */
         .info-card {
+            background: white;
             border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 32px;
+            padding: 3rem;
             height: 100%;
-            background: #FFFFFF;
-            transition: all 0.3s ease;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
         }
 
         .info-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            border-color: #cbd5e1;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.03);
         }
 
         .section-label {
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
             font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
             display: block;
         }
 
-        h2 { font-weight: 800; letter-spacing: -1px; }
+        h2 { font-weight: 700; font-size: 1.8rem; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+
+        /* Typography spacing */
+        p { font-weight: 400; line-height: 1.7; font-size: 1.05rem; }
 
         .task-list { list-style: none; padding: 0; }
         .task-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #F9FAFB;
-            display: flex;
-            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f8fafc;
+            font-weight: 500;
         }
 
-        .task-list li::before {
-            content: "→";
-            margin-right: 12px;
-            color: var(--primary);
-            font-weight: bold;
-        }
+        .task-list li span { color: var(--primary); margin-right: 12px; font-weight: 800; }
 
         .skill-badge {
-            border: 1px solid #E5E7EB;
-            padding: 8px 18px;
-            border-radius: 12px;
-            margin: 4px;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 14px;
+            margin: 5px;
             display: inline-block;
-            font-weight: 500;
             font-size: 0.9rem;
-            color: var(--secondary);
+            font-weight: 600;
+            color: var(--dark);
         }
 
-        .marketing-focus {
-            background-color: #111827;
+        .marketing-exclusive {
+            background: var(--dark);
             color: white;
             border: none;
         }
 
         footer {
-            padding: 50px 0;
+            padding: 60px 0;
             border-top: 1px solid var(--card-border);
-            color: var(--secondary);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            color: #64748b;
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <div class="container text-center">
-            <img src="cara.png" alt="Maurici Nisa Ortiz" class="profile-img mb-4">
-            <div class="mb-2">
-                <span class="role-tag">FITXA IPO: BLOC A</span>
+        <div class="container text-center text-md-start">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                    <img src="cara.png" alt="Maurici Nisa Ortiz" class="profile-img shadow-sm">
+                </div>
+                <div class="col-md-9">
+                    <span class="role-badge mb-3">Itinerari Professional i Ocupacional</span>
+                    <h1>Maurici Nisa Ortiz</h1>
+                    <p class="fs-5 text-muted mb-0">
+                        Especialista en Manteniment Microinformàtic amb visió estratègica cap al <strong>Grau Superior de Màrqueting i Publicitat</strong>.
+                    </p>
+                </div>
             </div>
-            <h1 class="display-4 fw-800 mb-3">Maurici Nisa Ortiz</h1>
-            <p class="lead text-muted mx-auto" style="max-width: 700px;">
-                Tècnic en <strong>Sistemes Microinformàtics i Xarxes</strong> amb projecció acadèmica cap al <strong>Màrqueting i la Publicitat</strong>.
-            </p>
         </div>
     </header>
 
     <main class="container my-5">
         <div class="row g-4">
             
-            <div class="col-lg-7">
+            <div class="col-lg-8">
                 <div class="info-card">
-                    <span class="section-label">01. Definició del Perfil</span>
-                    <h2 class="mb-4">Tècnic de Reparació i Manteniment d'Actius Tecnològics</h2>
-                    <p class="fs-5 text-secondary">
-                        Aquest perfil professional s'especialitza en el cicle de vida del hardware: des de la instal·lació inicial fins a la diagnosi i resolució de fallades crítiques. 
+                    <span class="section-label">Fase 01 — Definició</span>
+                    <h2>Tècnic en Reparació d'Equips i Suport de Hardware</h2>
+                    <p>
+                        Aquest rol defineix al professional responsable de la <strong>salut tecnològica</strong> d'una organització. Es tracta d'un perfil híbrid que combina la destresa manual amb la diagnosi lògica avançada. 
                     </p>
-                    <p class="text-secondary">
-                        La meva visió uneix la <strong>precisió tècnica</strong> d'SMX amb la <strong>capacitat analítica</strong> del màrqueting, entenent la reparació no només com un servei tècnic, sinó com una eina fonamental d'atenció al client i valor de marca.
+                    <p class="mb-0">
+                        La meva elecció d'aquesta sortida es basa en la necessitat d'entendre la base física del producte abans de fer el salt al <strong>Màrqueting</strong>. Com a futur publicitari, conèixer les interioritats de la tecnologia em permetrà comunicar el seu valor d'una manera molt més autèntica i tècnica.
                     </p>
                 </div>
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <div class="info-card">
-                    <span class="section-label">02. Competències</span>
-                    <h2 class="mb-4 small">Soft & Hard Skills</h2>
-                    <div class="mt-3">
-                        <span class="skill-badge">Arquitectura de PCs</span>
-                        <span class="skill-badge">Sistemes Operatius</span>
-                        <span class="skill-badge">Diagnosi de Hardware</span>
-                        <span class="skill-badge">Gestió de Programari</span>
-                        <span class="skill-badge marketing-focus">Estratègia de Marca</span>
-                        <span class="skill-badge marketing-focus">Comunicació Comercial</span>
-                        <span class="skill-badge marketing-focus">Anàlisi de Mercat</span>
+                    <span class="section-label">Fase 02 — Skills</span>
+                    <h2>Competències Transversals</h2>
+                    <div class="mt-4">
+                        <span class="skill-badge">Arquitectura de Sistemes</span>
+                        <span class="skill-badge">Manteniment de Hardware</span>
+                        <span class="skill-badge">Diagnosi de Fallades</span>
+                        <span class="skill-badge marketing-exclusive">Estratègia Digital</span>
+                        <span class="skill-badge marketing-exclusive">Creativitat</span>
                     </div>
                 </div>
             </div>
 
             <div class="col-12">
                 <div class="info-card">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <span class="section-label">03. Tasques i Funcions</span>
-                            <h2 class="mb-4">Operacions Tècniques</h2>
-                            <ul class="task-list text-secondary">
-                                <li><strong>Instal·lació i muntatge:</strong> Configuració física i lògica d'equips i perifèrics.</li>
-                                <li><strong>Manteniment preventiu:</strong> Optimització de recursos per allargar la vida útil del hardware.</li>
-                                <li><strong>Reparació correctiva:</strong> Diagnòstic de fallades en components i substitució de peces.</li>
-                                <li><strong>Suport i Assessorament:</strong> Resolució de dubtes tècnics i recomanació de solucions segons les necessitats de l'usuari.</li>
+                    <span class="section-label">Fase 03 — Operacions</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Tasques clau del perfil professional</h2>
+                            <ul class="task-list">
+                                <li><span>01</span> Muntatge i testatge de components d'última generació.</li>
+                                <li><span>02</span> Recuperació de sistemes i anàlisi preventiu de dades.</li>
+                                <li><span>03</span> Gestió de garanties i relació directa amb proveïdors.</li>
+                                <li><span>04</span> Assessorament comercial basat en requeriments tècnics.</li>
                             </ul>
                         </div>
-                        <div class="col-lg-6 mt-4 mt-lg-0 text-center">
-                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="img-fluid rounded-4" alt="Tech" style="max-height: 300px; width: 100%; object-fit: cover;">
+                        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-center">
+                            <p class="text-muted border-start ps-4 italic">
+                                "La reparació és el primer pas de la postvenda: un client amb un problema solucionat és un client fidelitzat per a la marca."
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -181,11 +197,18 @@
         </div>
     </main>
 
-    <footer class="text-center">
+    <footer class="text-center text-md-start">
         <div class="container">
-            <p class="mb-2 fw-bold text-dark">Maurici Nisa Ortiz</p>
-            <p class="mb-0">Projecte de Síntesi i Orientació Laboral - SMX</p>
-            <p class="small text-muted mt-2">© 2024 · Desenvolupat amb claredat i precisió</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0 fw-bold text-dark">Maurici Nisa Ortiz</p>
+                    <p class="small mb-0">Perfil SMX / Futur Grau Superior de Marketing</p>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <p class="small mb-0">Bloc A - Activitat Fitxa IPO</p>
+                    <p class="small opacity-50">2024</p>
+                </div>
+            </div>
         </div>
     </footer>
 
