@@ -3,334 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projecte Naval 3D | Nisa & Lopez</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Naval3D Pro | Nisa & Lopez</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a2342;
-            --secondary: #00d2ff;
-            --accent: #3a7bd5;
-            --dark: #1d1d1d;
-            --light: #ffffff;
-            --gradient: linear-gradient(135deg, #0a2342 0%, #3a7bd5 100%);
-            --glass: rgba(255, 255, 255, 0.95);
+            --primary: #0f172a; --secondary: #00f2ff; --accent: #3b82f6;
+            --bg: #f8fafc; --card: rgba(255, 255, 255, 0.9);
+            --text: #1e293b; --sub: #64748b; --glass: blur(12px);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { box-sizing: border-box; }
+        [data-theme="dark"] {
+            --primary: #00f2ff; --bg: #020617; --card: rgba(15, 23, 42, 0.85);
+            --text: #f1f5f9; --sub: #94a3b8;
+        }
 
+        * { box-sizing: border-box; transition: background 0.4s, color 0.4s; }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f0f4f8;
-            color: var(--dark);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg);
+            color: var(--text); margin: 0; overflow: hidden; height: 100vh;
         }
 
-        h1, h2, h3 { font-family: 'Outfit', sans-serif; margin-top: 0; }
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.3; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .header-ui {
+            position: fixed; top: 0; width: 100%; padding: 25px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.4rem; }
+        .logo svg { width: 35px; filter: drop-shadow(0 0 8px var(--accent)); }
 
-        /* PORTADA */
-        .hero {
-            height: 100vh;
-            background: var(--gradient);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            border-bottom: 10px solid var(--secondary);
-            padding: 20px;
+        .btn-theme {
+            background: var(--card); border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 18px; border-radius: 50px; cursor: pointer; color: var(--text);
+            backdrop-filter: var(--glass); font-weight: 600;
         }
 
-        .hero h1 { font-size: 4rem; margin-bottom: 10px; letter-spacing: -1px; }
-        .hero p { font-size: 1.5rem; opacity: 0.9; font-weight: 300; }
-        .authors { 
-            margin-top: 40px; 
-            padding: 15px 30px; 
-            background: rgba(255,255,255,0.1); 
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            font-weight: 600;
+        .viewport { width: 100vw; height: 100vh; position: relative; }
+        .slide {
+            position: absolute; inset: 0; padding: 8vh 5vw;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            transition: var(--transition); z-index: 1;
+        }
+        .slide.active { opacity: 1; visibility: visible; transform: translateY(0); z-index: 2; }
+
+        .card-main {
+            background: var(--card); backdrop-filter: var(--glass);
+            width: 100%; max-width: 1200px; max-height: 82vh;
+            border-radius: 35px; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px;
+            overflow-y: auto;
         }
 
-        /* SECCIONS ESTIL SLIDE */
-        section {
-            background: var(--glass);
-            margin-bottom: 80px;
-            padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255,255,255,0.3);
-            position: relative;
+        .content-anim > * { opacity: 0; transform: translateY(20px); transition: 0.5s ease-out; }
+        .slide.active .content-anim > * { opacity: 1; transform: translateY(0); }
+
+        h2 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; margin-bottom: 15px; color: var(--accent); }
+        .hero-txt { font-family: 'Outfit', sans-serif; font-size: 4rem; line-height: 1; margin: 0; background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* GRIDS ESPECIALS */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .item-box { padding: 15px; border-radius: 15px; background: rgba(0,0,0,0.03); border-left: 4px solid var(--accent); }
+        .item-box h4 { margin: 0 0 5px 0; font-size: 0.9rem; text-transform: uppercase; color: var(--accent); }
+        .item-box p { margin: 0; font-size: 0.85rem; line-height: 1.4; color: var(--sub); }
+
+        .parallax-wrap { position: relative; width: 100%; height: 100%; border-radius: 25px; overflow: hidden; min-height: 300px; }
+        .img-parallax { width: 110%; height: 110%; object-fit: cover; position: absolute; top: -5%; left: -5%; }
+
+        .nav-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: 15px; z-index: 1000;
+            padding: 10px 20px; background: var(--card); backdrop-filter: var(--glass);
+            border-radius: 100px; border: 1px solid rgba(255,255,255,0.3);
         }
+        .arrow-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        .dot { width: 8px; height: 8px; background: var(--text); opacity: 0.2; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .dot.active { width: 20px; border-radius: 10px; background: var(--accent); opacity: 1; }
 
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 50px;
-            height: 5px;
-            background: var(--secondary);
-            display: inline-block;
-            border-radius: 10px;
-        }
-
-        /* GRID LAYOUTS */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-
-        /* IMATGES */
-        .img-box {
-            width: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        .img-box img { width: 100%; display: block; transition: 0.4s; }
-        .img-box:hover img { transform: scale(1.03); }
-
-        /* MAPA D'EMPATIA CARDS */
-        .empathy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .empathy-card {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 20px;
-            border-left: 5px solid var(--accent);
-        }
-        .empathy-card h3 { font-size: 1.1rem; color: var(--accent); margin-bottom: 10px; }
-
-        /* DAFO */
-        .dafo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .dafo-item { padding: 20px; border-radius: 15px; color: white; }
-        .f { background: #27ae60; } /* Fortaleses */
-        .d { background: #e67e22; } /* Debilitats */
-        .o { background: #2980b9; } /* Oportunitats */
-        .a { background: #c0392b; } /* Amenaces */
-
-        /* LLISTES */
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-
-        /* PEU DE PÀGINA */
-        footer {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .badge {
-            background: var(--secondary);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        @media (max-width: 850px) {
-            .grid-2, .grid-3, .empathy-grid { grid-template-columns: 1fr; }
-            section { padding: 30px; }
-            .hero h1 { font-size: 2.5rem; }
-        }
+        @media (max-width: 900px) { .card-main { grid-template-columns: 1fr; } .hero-txt { font-size: 2.5rem; } }
     </style>
 </head>
-<body>
-
-    <header class="hero">
-        <div class="badge">PROPOSTA DE NEGOCI 2026</div>
-        <h1>Impressió 3D Naval</h1>
-        <p>El futur de la nàutica: ràpid, personalitzat i sostenible</p>
-        <div class="authors">
-            Realitzat per: Maurici Nisa & Claudi Lopez
-        </div>
-    </header>
-
-    <div class="container">
-
-        <section>
-            <div class="grid-2">
-                <div>
-                    <h2 class="section-title">1. Idea de Negoci</h2>
-                    <p>Creació d'una empresa pionera en la fabricació de vaixells mitjançant <strong>impressores 3D de gran format</strong>.</p>
-                    <p>Substituïm els motlles tradicionals per un procés de fabricació additiva que utilitza disseny digital i materials d'alta resistència marítima.</p>
-                    <ul>
-                        <li><strong>Més ràpid:</strong> Reducció dràstica dels temps de lliurament.</li>
-                        <li><strong>Més verd:</strong> Menys residus i materials sostenibles.</li>
-                        <li><strong>A mida:</strong> Cada vaixell és únic segons el client.</li>
-                    </ul>
-                </div>
-                <div class="img-box">
-                    <img src="assets/img1.png" alt="Concepte 3D">
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="grid-2">
-                <div class="img-box">
-                    <img src="assets/img2.png" alt="Impressora Industrial">
-                </div>
-                <div>
-                    <h2 class="section-title">Tecnologia</h2>
-                    <p>Utilitzem impressores 3D capaces de generar estructures de gran format en una sola peça (monocasc).</p>
-                    <p>Aquest enfocament permet crear geometries hidrodinàmiques complexes que serien impossibles o molt cares de fer amb mètodes clàssics.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">2. Mapa d’Empatia</h2>
-            <div class="empathy-grid">
-                <div class="empathy-card">
-                    <h3>¿Què pensa i sent?</h3>
-                    <p>Vol seguretat absoluta, però busca destacar amb alguna cosa innovadora i ecològica.</p>
-                </div>
-                <div class="empathy-card">
-                    <h3>¿Què veu?</h3>
-                    <p>Un mercat naval estancat, on tot sembla igual i la fabricació triga mesos.</p>
-                </div>
-                <div class="empathy-card">
-                    <h3>¿Què diu i fa?</h3>
-                    <p>Investiga noves tendències, compara materials i valora la tecnologia punta.</p>
-                </div>
-                <div class="empathy-card">
-                    <h3>¿Què sent?</h3>
-                    <p>Notícies sobre l'evolució de la impressió 3D i recomanacions d'experts en eficiència.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">3. Segmentació (Target)</h2>
-            <div class="grid-3">
-                <div class="empathy-card">
-                    <img src="assets/img3.png" alt="Esbarjo" class="img-box" style="margin-bottom:15px">
-                    <strong>Esbarjo</strong><br>
-                    Particulars de 30-65 anys que busquen un vaixell exclusiu.
-                </div>
-                <div class="empathy-card">
-                    <img src="assets/img4.png" alt="Turisme" class="img-box" style="margin-bottom:15px">
-                    <strong>Turisme</strong><br>
-                    Empreses nàutiques que necessiten flotes modernes i ràpides.
-                </div>
-                <div class="empathy-card">
-                    <img src="assets/img5.png" alt="Treball" class="img-box" style="margin-bottom:15px">
-                    <strong>Treball</strong><br>
-                    Serveis de vigilància, pesca i transport lleuger.
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">4. DAFO i Viabilitat</h2>
-            <div class="dafo-grid">
-                <div class="dafo-item f">
-                    <strong>Fortaleses</strong>
-                    <ul>
-                        <li>Alta personalització</li>
-                        <li>Velocitat de producció</li>
-                    </ul>
-                </div>
-                <div class="dafo-item d">
-                    <strong>Debilitats</strong>
-                    <ul>
-                        <li>Tecnologia nova al mercat</li>
-                        <li>Personal molt especialitzat</li>
-                    </ul>
-                </div>
-                <div class="dafo-item o">
-                    <strong>Oportunitats</strong>
-                    <ul>
-                        <li>Auge de l'economia blava</li>
-                        <li>Turisme nàutic en creixement</li>
-                    </ul>
-                </div>
-                <div class="dafo-item a">
-                    <strong>Amenaces</strong>
-                    <ul>
-                        <li>Normatives molt estrictes</li>
-                        <li>Astillers tradicionals</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Estratègia de Màrqueting</h2>
-            <div class="grid-2">
-                <div>
-                    <img src="assets/img7.png" alt="Màrqueting" class="img-box" style="margin-bottom:20px">
-                    <h3>Diferenciació i Confiança</h3>
-                    <p>No venem vaixells, venem **tecnologia segura**. Farem campanyes sobre la resistència dels materials per trencar la barrera de la desconfiança.</p>
-                </div>
-                <div>
-                    <img src="assets/img8.png" alt="Canals" class="img-box" style="margin-bottom:20px">
-                    <h3>Canals de Difusió</h3>
-                    <p>Presència en ports esportius, fires nàutiques amb maquetes reals i ús intensiu d'Instagram i LinkedIn per arribar al sector professional.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Pla de Finançament</h2>
-            <div class="grid-2">
-                <div>
-                    <h3>Necessitats</h3>
-                    <ul>
-                        <li><strong>Actius Fixos:</strong> Impressores 3D, programari naval, nau portuària.</li>
-                        <li><strong>Circulant:</strong> Matèria primera (polímers), salaris i màrqueting.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Fonts</h3>
-                    <ul>
-                        <li>Capital propi i Business Angels.</li>
-                        <li>Préstecs bancaris i Lísing tecnològic.</li>
-                        <li>Subvencions Next Generation.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="empathy-card" style="margin-top:30px; text-align:center; border-left:none; border-bottom:5px solid var(--secondary)">
-                <p><strong>Viabilitat:</strong> Punt d'equilibri previst al <strong>2n any</strong> gràcies a l'estalvi en costos de fabricació.</p>
-            </div>
-        </section>
-
-        <section>
-            <div class="grid-2">
-                <div class="img-box">
-                    <img src="assets/img9.png" alt="RA">
-                </div>
-                <div>
-                    <h2 class="section-title">Innovació en Venda</h2>
-                    <p>Ús de la <strong>Realitat Augmentada</strong> per permetre als clients visualitzar el seu vaixell totalment personalitzat abans de començar la impressió.</p>
-                </div>
-            </div>
-        </section>
-
+<body data-theme="light">
+    <canvas id="particles"></canvas>
+    <div class="header-ui">
+        <div class="logo"><svg viewBox="0 0 100 100"><path d="M10,60 Q50,90 90,60 L95,30 Q50,45 5,30 Z" fill="none" stroke="currentColor" stroke-width="6"/></svg><span>Naval<span style="color:var(--accent)">3D</span></span></div>
+        <button class="btn-theme" onclick="toggleTheme()" id="themeBtn">🌙 MODE FOSC</button>
     </div>
 
-    <footer>
-        <h2>Projecte Final de Negoci</h2>
-        <p>Desenvolupat amb passió per la innovació nàutica.</p>
-        <div class="authors" style="background: rgba(255,255,255,0.05); display:inline-block">
-            Maurici Nisa | Claudi Lopez
+    <div class="viewport" id="viewport">
+        <div class="slide active">
+            <div class="card-main" style="grid-template-columns: 1fr; text-align: center;">
+                <div class="content-anim">
+                    <div style="font-weight: 800; color: var(--accent); letter-spacing: 4px; margin-bottom: 15px;">INNOVACIÓ NAVAL</div>
+                    <h1 class="hero-txt">La Revolució de la<br>Impressió 3D Naval</h1>
+                    <p style="font-size: 1.2rem; color: var(--sub); margin-top: 20px;">Maurici Nisa • Claudi Lopez • 2026</p>
+                </div>
+            </div>
         </div>
-        <p style="margin-top:40px; opacity:0.5; font-size:0.8rem">© 2026 Innovació Naval 3D</p>
-    </footer>
 
+        <div class="slide">
+            <div class="card-main">
+                <div class="content-anim">
+                    <h2>Idea de Negoci</h2>
+                    <p>Fabricació d'embarcacions mitjançant <strong>impressió 3D de gran format</strong>. Un procés digital que elimina motlles i residus.</p>
+                    <div class="info-grid">
+                        <div class="item-box"><h4>Productes</h4><p>Esbarjo, activitats turístiques i vaixells de treball (pesca/vigilància).</p></div>
+                        <div class="item-box"><h4>Tecnologia</h4><p>Impressió d'estructures amb polímers d'alta resistència marítima.</p></div>
+                    </div>
+                </div>
+                <div class="parallax-wrap"><img src="assets/img2.png" class="img-parallax"></div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main" style="grid-template-columns: 1fr;">
+                <div class="content-anim">
+                    <h2 style="text-align: center;">Mapa d'Empatia: Entenent el Client</h2>
+                    <div class="info-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+                        <div class="item-box"><h4>Pensa i Sent</h4><p>Busca seguretat, innovació i sostenibilitat.</p></div>
+                        <div class="item-box"><h4>Veu</h4><p>Mercat tradicional lent i poc personalitzat.</p></div>
+                        <div class="item-box"><h4>Sent</h4><p>Avenços en 3D i noves solucions eficients.</p></div>
+                        <div class="item-box"><h4>Diu i Fa</h4><p>Compara dissenys moderns i valora la rapidesa.</p></div>
+                    </div>
+                    <div class="info-grid" style="margin-top: 20px;">
+                        <div class="item-box" style="border-color: #ef4444;"><h4>Dolors (Problemes)</h4><p>Temps de fabricació llargs i processos contaminants de la fibra clàssica.</p></div>
+                        <div class="item-box" style="border-color: #10b981;"><h4>Guanys (Beneficis)</h4><p>Personalització total, lliurament ràpid i disseny ecològic.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main">
+                <div class="parallax-wrap"><img src="assets/img3.png" class="img-parallax"></div>
+                <div class="content-anim">
+                    <h2>Segmentació del Target</h2>
+                    <div class="info-grid">
+                        <div class="item-box"><h4>Geogràfica</h4><p>Zones costaneres, ports esportius i regions turístiques.</p></div>
+                        <div class="item-box"><h4>Demogràfica</h4><p>30-65 anys, empreses nàutiques i professionals del sector.</p></div>
+                        <div class="item-box"><h4>Psicogràfica</h4><p>Ment innovadora, amants de la tecnologia i l'ecologia.</p></div>
+                        <div class="item-box"><h4>Conductual</h4><p>Busquen eficiència, exclusivitat i productes a mida.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main" style="grid-template-columns: 1fr;">
+                <div class="content-anim">
+                    <h2 style="text-align: center;">Anàlisi DAFO</h2>
+                    <div class="info-grid">
+                        <div class="item-box" style="border-color: #10b981;"><h4>Fortaleses</h4><p>Tecnologia disruptiva, alta personalització i velocitat de producció.</p></div>
+                        <div class="item-box" style="border-color: #f59e0b;"><h4>Debilitats</h4><p>Tecnologia nova al sector i necessitat de personal molt especialitzat.</p></div>
+                        <div class="item-box" style="border-color: #3b82f6;"><h4>Oportunitats</h4><p>Economia Blava, turisme nàutic en auge i evolució dels materials 3D.</p></div>
+                        <div class="item-box" style="border-color: #ef4444;"><h4>Amenaces</h4><p>Normatives marítimes estrictes i competència d'astillers tradicionals.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main">
+                <div class="content-anim">
+                    <h2>Estratègia de Màrqueting</h2>
+                    <ul style="font-size: 0.9rem; line-height: 1.6; padding-left: 20px; color: var(--sub);">
+                        <li><strong>Diferenciació:</strong> Valor en el disseny digital a mida.</li>
+                        <li><strong>Confiança:</strong> Campanyes sobre la resistència dels nous materials.</li>
+                        <li><strong>Canals:</strong> Instagram (visual), LinkedIn (B2B) i presència física en ports i fires.</li>
+                        <li><strong>Influencers:</strong> Col·laboracions amb experts en tecnologia naval.</li>
+                    </ul>
+                </div>
+                <div class="parallax-wrap"><img src="assets/img8.png" class="img-parallax"></div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main">
+                <div class="parallax-wrap"><img src="assets/img9.png" class="img-parallax"></div>
+                <div class="content-anim">
+                    <h2>Pla de Finançament</h2>
+                    <div class="item-box" style="margin-bottom:10px">
+                        <h4>Inversió (On gastem?)</h4>
+                        <p style="font-size:0.8rem">Actius fixos (Impressores, nau portuària, software) i circulant (polímers, salaris, màrqueting).</p>
+                    </div>
+                    <div class="item-box">
+                        <h4>Fonts (D'on surten?)</h4>
+                        <p style="font-size:0.8rem">Capital propi, <strong>Business Angels</strong>, lísing bancari i subvencions <strong>Next Generation/Enisa</strong>.</p>
+                    </div>
+                    <div style="background: var(--accent); color: white; padding: 15px; border-radius: 15px; margin-top: 15px;">
+                        <h4 style="margin:0; font-size:0.9rem">📈 VIABILITAT</h4>
+                        <p style="margin:5px 0 0 0; font-size:0.85rem">Punt d'equilibri (Breakeven) al <strong>2n any</strong> gràcies a l'estalvi en costos de producció.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main" style="grid-template-columns: 1fr;">
+                <div class="content-anim">
+                    <h2 style="text-align: center;">Fonts de Finançament Clau</h2>
+        
+                    <div class="info-grid">
+                        <div class="item-box">
+                            <h4>Business Angels</h4>
+                            <p>
+                                Són inversors privats que aporten capital a startups en fases inicials.
+                                A més dels diners, ofereixen experiència, contactes i assessorament estratègic.
+                            </p>
+                        </div>
+        
+                        <div class="item-box">
+                            <h4>Next Generation EU</h4>
+                            <p>
+                                Fons europeus destinats a impulsar la recuperació econòmica i la innovació.
+                                Donen suport a projectes sostenibles, digitals i tecnològics com Naval3D.
+                            </p>
+                        </div>
+                    </div>
+        
+                    <div style="margin-top:20px; background: rgba(0,0,0,0.05); padding:15px; border-radius:15px;">
+                        <p style="margin:0; font-size:0.9rem; color: var(--sub);">
+                            👉 Amb dues fonts són clau per accelerar el creixement inicial i reduir el risc financer del projecte.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="card-main" style="grid-template-columns: 1fr; text-align: center;">
+                <div class="content-anim">
+                    <h2>Gràcies per la vostra atenció</h2>
+                    <p>Naval3D: El futur de la nàutica ja s'està imprimint.</p>
+                    <p style="color: var(--accent); font-weight: 800; margin-top: 40px;">¿PREGUNTES?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-dock">
+        <button class="arrow-btn" onclick="prevSlide()">←</button>
+        <div id="dotNav" style="display:flex; gap:8px"></div>
+        <button class="arrow-btn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dotsCont = document.getElementById('dotNav');
+
+        slides.forEach((_, i) => {
+            const d = document.createElement('div');
+            d.className = `dot ${i===0?'active':''}`;
+            d.onclick = () => goToSlide(i);
+            dotsCont.appendChild(d);
+        });
+
+        function update() {
+            slides.forEach((s, i) => s.classList.toggle('active', i === current));
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        function nextSlide() { if (current < slides.length - 1) { current++; update(); } }
+        function prevSlide() { if (current > 0) { current--; update(); } }
+        function goToSlide(n) { current = n; update(); }
+
+        function toggleTheme() {
+            const b = document.body;
+            const isDark = b.getAttribute('data-theme') === 'dark';
+            b.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeBtn').innerText = isDark ? "🌙 MODE FOSC" : "☀️ MODE CLAR";
+        }
+
+        document.addEventListener('keydown', e => { if(e.key==='ArrowRight') nextSlide(); if(e.key==='ArrowLeft') prevSlide(); });
+
+        // Partícules
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let parts = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.onresize = resize; resize();
+        class Part {
+            constructor() { this.init(); }
+            init() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.s = Math.random()*2; this.v = Math.random()*0.5; }
+            draw() { ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI*2); ctx.fill(); this.y -= this.v; if(this.y < 0) this.init(); }
+        }
+        for(let i=0; i<30; i++) parts.push(new Part());
+        function loop() { ctx.clearRect(0,0,canvas.width,canvas.height); parts.forEach(p => p.draw()); requestAnimationFrame(loop); }
+        loop();
+    </script>
 </body>
 </html>
