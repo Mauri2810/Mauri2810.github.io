@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentació: Impressió 3D Naval</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #00a8e8;
+            --accent: #00ffcc;
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background: var(--white);
+            margin-bottom: 50px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 8px solid var(--secondary);
+            overflow: hidden;
+        }
+
+        .header-slide {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 20px;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .header-slide h1 { color: white; font-size: 2.5em; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .image-container {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .quadrant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #eef2f3;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li::before {
+            content: "⚓ ";
+            color: var(--secondary);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th { background-color: var(--primary); color: white; }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-slide">
+        <h1>Fabricació de Vaixells en 3D</h1>
+        <p>Innovació, Eficiència i Sostenibilitat en el Sector Naval</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <div class="grid">
+                <div>
+                    <h2>1. Idea de Negoci</h2>
+                    <p>Empresa especialitzada en la fabricació d'embarcacions mitjançant <strong>impressores 3D de gran format</strong>.</p>
+                    <ul>
+                        <li>Construcció ràpida i eficient.</li>
+                        <li>Materials resistents de grau marítim.</li>
+                        <li>Personalització total mitjançant disseny digital.</li>
+                    </ul>
+                    <p><strong>Enfocament:</strong> Vaixells d'esbarjo, turístics i de treball lleuger.</p>
+                </div>
+                <div class="image-container">
+                    <img src="assets/img1.png" alt="Disseny Digital de Vaixells">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="grid">
+                <div class="image-container">
+                    <img src="assets/img2.png" alt="Impressora 3D de gran format">
+                </div>
+                <div>
+                    <h2>Tecnologia i Innovació</h2>
+                    <p>Utilitzem braços robòtics i polímers d'alta resistència per crear estructures monolítiques més lleugeres i duradores que el mètode tradicional de motlles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Mapa d’Empatia del Client</h2>
+            <div class="quadrant-grid">
+                <div class="card">
+                    <h3>Què pensa i sent?</h3>
+                    <p>Vol seguretat, busca innovació i li preocupa el medi ambient.</p>
+                </div>
+                <div class="card">
+                    <h3>Què veu?</h3>
+                    <p>Mercat tradicional lent i amb poca personalització.</p>
+                </div>
+                <div class="card">
+                    <h3>Què sent?</h3>
+                    <p>Notícies sobre tecnologia 3D i recomanacions d'eficiència.</p>
+                </div>
+                <div class="card">
+                    <h3>Què diu i fa?</h3>
+                    <p>Compara opcions i mostra interès per dissenys moderns.</p>
+                </div>
+            </div>
+            <div class="grid" style="margin-top: 20px;">
+                <div class="card" style="background: #ffe6e6;">
+                    <h3>Dolors (Problemes)</h3>
+                    <p>Temps llargs i falta de sostenibilitat.</p>
+                </div>
+                <div class="card" style="background: #e6ffec;">
+                    <h3>Guanys (Beneficis)</h3>
+                    <p>Producció ràpida i disseny a mida.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Segmentació (Target)</h2>
+            <div class="grid">
+                <div>
+                    <h3>Esbarjo i Turisme</h3>
+                    <p>Adults de 30 a 65 anys i empreses turístiques que busquen exclusivitat.</p>
+                    <img src="assets/img3.png" alt="Vaixell d'esbarjo" class="image-container" style="margin-top:10px">
+                </div>
+                <div>
+                    <h3>Treball i Professionals</h3>
+                    <p>Ports, vigilància i pesca que valoren la funcionalitat i rapidesa.</p>
+                    <img src="assets/img4.png" alt="Vaixell de treball" class="image-container" style="margin-top:10px">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="grid">
+                <div>
+                    <h2>4. Anàlisi DAFO</h2>
+                    <p><span class="highlight">Fortaleses:</span> Personalització i velocitat.</p>
+                    <p><span class="highlight">Debilitats:</span> Tecnologia nova, personal especialitzat.</p>
+                    <p><span class="highlight">Oportunitats:</span> Turisme nàutic verd, economia blava.</p>
+                    <p><span class="highlight">Amenaces:</span> Normatives i desconfiança inicial.</p>
+                </div>
+                <div class="image-container">
+                    <img src="assets/img5.png" alt="Anàlisi de dades navals">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="grid">
+                <div class="image-container">
+                    <img src="assets/img6.png" alt="Sostenibilitat i materials">
+                </div>
+                <div>
+                    <h2>Compromís Ecològic</h2>
+                    <p>La nostra fabricació redueix el malbaratament de material gairebé a zero i utilitza materials reciclables, alineant-nos amb les noves tendències de sostenibilitat marítima.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Estratègia de Màrqueting</h2>
+            <div class="grid">
+                <div>
+                    <h3>Confiança i Tècnica</h3>
+                    <p>Campanyes per demostrar la resistència dels materials i la seguretat del procés.</p>
+                    <img src="assets/img7.png" alt="Proves de resistència" class="image-container">
+                </div>
+                <div>
+                    <h3>Canals de Difusió</h3>
+                    <ul>
+                        <li>Presència física en <strong>Ports i Fires</strong>.</li>
+                        <li><strong>LinkedIn</strong> per B2B (empreses).</li>
+                        <li><strong>Instagram</strong> per visualitzar el disseny.</li>
+                    </ul>
+                    <img src="assets/img8.png" alt="Fires nàutiques">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="grid">
+                <div>
+                    <h2>Innovació en la Venda</h2>
+                    <p>Utilitzem realitat augmentada perquè el client vegi el seu vaixell personalitzat abans d'imprimir-lo, eliminant la incertesa.</p>
+                </div>
+                <div class="image-container">
+                    <img src="assets/img9.png" alt="Realitat Augmentada en venda">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Finançament i Viabilitat</h2>
+            <table>
+                <tr>
+                    <th>Inversió (Actius)</th>
+                    <th>Fonts de Finançament</th>
+                </tr>
+                <tr>
+                    <td>Impressores 3D industrials i software.</td>
+                    <td>Capital propi i Business Angels.</td>
+                </tr>
+                <tr>
+                    <td>Matèria primera i personal.</td>
+                    <td>Préstecs bancaris i Subvencions (Next Gen).</td>
+                </tr>
+            </table>
+            <p style="margin-top: 20px;"><strong>Punt d'equilibri:</strong> Previst per al segon any d'activitat.</p>
+        </section>
+
+        <section>
+            <div class="grid">
+                <div class="image-container">
+                    <img src="assets/img10.png" alt="Vaixell finalitzat al mar">
+                </div>
+                <div>
+                    <h2>Objectiu Final</h2>
+                    <p>Liderar la transformació digital del sector naval, oferint embarcacions modernes, sostenibles i completament adaptades a cada usuari.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 - Projecte d'Innovació Naval 3D. Tots els drets reservats.</p>
+    </footer>
+
+</body>
+</html>
