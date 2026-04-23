@@ -63,7 +63,6 @@
         h2 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; margin-bottom: 15px; color: var(--accent); }
         .hero-txt { font-family: 'Outfit', sans-serif; font-size: 4rem; line-height: 1; margin: 0; background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* GRIDS ESPECIALS */
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
         .item-box { padding: 15px; border-radius: 15px; background: rgba(0,0,0,0.03); border-left: 4px solid var(--accent); }
         .item-box h4 { margin: 0 0 5px 0; font-size: 0.9rem; text-transform: uppercase; color: var(--accent); }
@@ -81,6 +80,10 @@
         .arrow-btn { background: var(--accent); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
         .dot { width: 8px; height: 8px; background: var(--text); opacity: 0.2; border-radius: 50%; cursor: pointer; transition: 0.3s; }
         .dot.active { width: 20px; border-radius: 10px; background: var(--accent); opacity: 1; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        th { text-align: left; color: var(--accent); border-bottom: 2px solid var(--accent); padding: 10px 5px; }
+        td { padding: 8px 5px; border-bottom: 1px solid rgba(0,0,0,0.05); }
 
         @media (max-width: 900px) { .card-main { grid-template-columns: 1fr; } .hero-txt { font-size: 2.5rem; } }
     </style>
@@ -112,6 +115,9 @@
                         <div class="item-box"><h4>Productes</h4><p>Esbarjo, activitats turístiques i vaixells de treball (pesca/vigilància).</p></div>
                         <div class="item-box"><h4>Tecnologia</h4><p>Impressió d'estructures amb polímers d'alta resistència marítima.</p></div>
                     </div>
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(59, 130, 246, 0.1); border-radius: 15px; border: 1px dashed var(--accent);">
+                        <strong>📌 Conclusió:</strong> No venem només vaixells, venem <strong>eficiència logística</strong>. Reduïm el temps de fabricació de 6 mesos a 4 setmanes, eliminant l'estoc de motlles físics.
+                    </div>
                 </div>
                 <div class="parallax-wrap"><img src="assets/img2.png" class="img-parallax"></div>
             </div>
@@ -141,10 +147,13 @@
                 <div class="content-anim">
                     <h2>Segmentació del Target</h2>
                     <div class="info-grid">
-                        <div class="item-box"><h4>Geogràfica</h4><p>Zones costaneres, ports esportius i regions turístiques.</p></div>
-                        <div class="item-box"><h4>Demogràfica</h4><p>30-65 anys, empreses nàutiques i professionals del sector.</p></div>
-                        <div class="item-box"><h4>Psicogràfica</h4><p>Ment innovadora, amants de la tecnologia i l'ecologia.</p></div>
-                        <div class="item-box"><h4>Conductual</h4><p>Busquen eficiència, exclusivitat i productes a mida.</p></div>
+                        <div class="item-box"><h4>Geogràfica</h4><p>Zones costaneres i ports "Smart" de la Mediterrània.</p></div>
+                        <div class="item-box"><h4>Demogràfica</h4><p>Empreses de charter i propietaris de 30-55 anys amb alt poder adquisitiu.</p></div>
+                        <div class="item-box"><h4>Psicogràfica</h4><p>Early adopters tecnològics i conscients de l'ecologia marina.</p></div>
+                        <div class="item-box"><h4>Conductual</h4><p>Busquen la immediatesa i la personalització extrema (Custom-made).</p></div>
+                    </div>
+                    <div style="margin-top: 20px; border-left: 4px solid var(--primary); padding-left: 15px;">
+                        <p style="font-style: italic; color: var(--sub);"><strong>🎯 Conclusió:</strong> El nostre "Early Adopter" és el <strong>sector del luxe sostenible</strong>, disposat a pagar un premium per un disseny únic i ecològic.</p>
                     </div>
                 </div>
             </div>
@@ -158,7 +167,7 @@
                         <div class="item-box" style="border-color: #10b981;"><h4>Fortaleses</h4><p>Tecnologia disruptiva, alta personalització i velocitat de producció.</p></div>
                         <div class="item-box" style="border-color: #f59e0b;"><h4>Debilitats</h4><p>Tecnologia nova al sector i necessitat de personal molt especialitzat.</p></div>
                         <div class="item-box" style="border-color: #3b82f6;"><h4>Oportunitats</h4><p>Economia Blava, turisme nàutic en auge i evolució dels materials 3D.</p></div>
-                        <div class="item-box" style="border-color: #ef4444;"><h4>Amenaces</h4><p>Normatives marítimes estrictes i competència d'rassanes tradicionals.</p></div>
+                        <div class="item-box" style="border-color: #ef4444;"><h4>Amenaces</h4><p>Normatives marítimes estrictes i competència d'astillers tradicionals.</p></div>
                     </div>
                 </div>
             </div>
@@ -181,22 +190,28 @@
 
         <div class="slide">
             <div class="card-main">
-                <div class="parallax-wrap"><img src="assets/img9.png" class="img-parallax"></div>
                 <div class="content-anim">
                     <h2>Pla de Finançament</h2>
-                    <div class="item-box" style="margin-bottom:10px">
-                        <h4>Inversió (On gastem?)</h4>
-                        <p style="font-size:0.8rem">Actius fixos (Impressores, nau portuària, software) i circulant (polímers, salaris, màrqueting).</p>
+                    <table>
+                        <tr><th>Concepte</th><th style="text-align:right">Import</th></tr>
+                        <tr><td>Impressores Industrial 3D (2 u.)</td><td style="text-align:right">180.000€</td></tr>
+                        <tr><td>R+D i Llicències Software</td><td style="text-align:right">45.000€</td></tr>
+                        <tr><td>Màrqueting i Llançament</td><td style="text-align:right">25.000€</td></tr>
+                        <tr style="font-weight:bold; color:var(--text)"><td>TOTAL INVERSIÓ INICIAL</td><td style="text-align:right">250.000€</td></tr>
+                    </table>
+                    
+                    <div class="item-box" style="margin-bottom:15px">
+                        <h4>Previsió de Vendes</h4>
+                        <p style="font-size:0.85rem">12 unitats/any a un preu mitjà de <strong>45.000€</strong>.</p>
+                        <p style="font-size:0.85rem; color: var(--accent); font-weight: 700;">Facturació: 540.000€/any.</p>
                     </div>
-                    <div class="item-box">
-                        <h4>Fonts (D'on surten?)</h4>
-                        <p style="font-size:0.8rem">Capital propi, <strong>Business Angels</strong>, lísing bancari i subvencions <strong>Next Generation/Enisa</strong>.</p>
-                    </div>
-                    <div style="background: var(--accent); color: white; padding: 15px; border-radius: 15px; margin-top: 15px;">
+                    
+                    <div style="background: var(--accent); color: white; padding: 15px; border-radius: 15px;">
                         <h4 style="margin:0; font-size:0.9rem">📈 VIABILITAT</h4>
-                        <p style="margin:5px 0 0 0; font-size:0.85rem">Punt d'equilibri (Breakeven) al <strong>2n any</strong> gràcies a l'estalvi en costos de producció.</p>
+                        <p style="margin:5px 0 0 0; font-size:0.85rem">Margen brut del 60%. <strong>Punt d'equilibri (Breakeven) al 2n any</strong> gràcies a l'estalvi en costos fixos de producció.</p>
                     </div>
                 </div>
+                <div class="parallax-wrap"><img src="assets/img9.png" class="img-parallax"></div>
             </div>
         </div>
 
@@ -204,28 +219,19 @@
             <div class="card-main" style="grid-template-columns: 1fr;">
                 <div class="content-anim">
                     <h2 style="text-align: center;">Fonts de Finançament Clau</h2>
-        
                     <div class="info-grid">
                         <div class="item-box">
                             <h4>Business Angels</h4>
-                            <p>
-                                Són inversors privats que aporten capital a startups en fases inicials.
-                                A més dels diners, ofereixen experiència, contactes i assessorament estratègic.
-                            </p>
+                            <p>Inversors privats que aporten capital inicial i "Smart Money" (contactes i experiència).</p>
                         </div>
-        
                         <div class="item-box">
                             <h4>Next Generation EU</h4>
-                            <p>
-                                Fons europeus destinats a impulsar la recuperació econòmica i la innovació.
-                                Donen suport a projectes sostenibles, digitals i tecnològics com Naval3D.
-                            </p>
+                            <p>Fons europeus destinats a la transformació digital i sostenibilitat de la indústria.</p>
                         </div>
                     </div>
-        
                     <div style="margin-top:20px; background: rgba(0,0,0,0.05); padding:15px; border-radius:15px;">
-                        <p style="margin:0; font-size:0.9rem; color: var(--sub);">
-                            👉 Amb dues fonts són clau per accelerar el creixement inicial i reduir el risc financer del projecte.
+                        <p style="margin:0; font-size:0.9rem; color: var(--sub); text-align:center;">
+                            Estratègia: 40% Capital propi | 30% Inversors | 30% Ajuts públics.
                         </p>
                     </div>
                 </div>
@@ -279,7 +285,6 @@
 
         document.addEventListener('keydown', e => { if(e.key==='ArrowRight') nextSlide(); if(e.key==='ArrowLeft') prevSlide(); });
 
-        // Partícules
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let parts = [];
